@@ -54,14 +54,14 @@ public class DaoUsuario {
 
 		return listar;
 	}
-	
+
 	public void delete(String login) {
 		String sql = "delete from usuario where login = '" + login + "'";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.execute();
-			
+
 			connection.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,6 +71,21 @@ public class DaoUsuario {
 				e1.printStackTrace();
 			}
 		}
-		
+
+	}
+
+	public BeanCursoJsp consultar(String login) throws Exception {
+		String sql = "select * from usuario where login='" + login + "'";
+
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
+			beanCursoJsp.setLogin(resultSet.getString("login"));
+			beanCursoJsp.setSenha(resultSet.getString("senha"));
+
+			return beanCursoJsp;
+		}
+		return null;
 	}
 }
