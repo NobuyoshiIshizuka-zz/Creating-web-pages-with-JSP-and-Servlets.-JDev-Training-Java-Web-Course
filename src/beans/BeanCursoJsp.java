@@ -1,8 +1,12 @@
+  
 package beans;
 
 public class BeanCursoJsp {
 
 	private Long id;
+	private String login;
+	private String senha;
+	
 	public Long getId() {
 		return id;
 	}
@@ -11,8 +15,7 @@ public class BeanCursoJsp {
 		this.id = id;
 	}
 
-	private String login;
-	private String senha;
+
 
 	public String getLogin() {
 		return login;
