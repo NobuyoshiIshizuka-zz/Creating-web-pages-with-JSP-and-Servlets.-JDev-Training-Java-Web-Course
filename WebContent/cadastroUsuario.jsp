@@ -50,15 +50,26 @@
 	<div class="container">
 		<table class="responsive-table">
 			<caption>Usuários cadastrados</caption>
+			<tr>
+				<th>Id</th>
+				<th>Login</th>
+				<th>Senha</th>
+				<th>Excluir</th>
+				<th>Editar</th>
+			</tr>
 			<c:forEach items="${usuarios}" var="user">
 				<tr>
 					<td style="width: 150px"><c:out value="${user.id}" /></td>
 
-					<td style="width: 150px"><c:out value="${user.login}" /></td>
+					<td style="width: 200px"><c:out value="${user.login}" /></td>
 					<td style="width: 150px"><c:out value="${user.senha}" /></td>
 
-					<td><a href="salvarUsuario?acao=delete&user=${user.login}">Excluir</a></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.login}">Editar-dados</a></td>
+					<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+							src="resources/img/excluir.jpg" alt="excluir" title="excluir"
+							width="20px" height="20px" /></a></td>
+					<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+							alt="editar" src="resources/img/editar.png" title="editar"
+							width="20px" height="20px" /></a></td>
 				</tr>
 			</c:forEach>
 		</table>
