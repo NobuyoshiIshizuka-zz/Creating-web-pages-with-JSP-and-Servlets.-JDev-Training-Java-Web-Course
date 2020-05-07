@@ -37,6 +37,12 @@
 							value="${user.senha}"></td>
 					</tr>
 					<tr>
+						<td>Nome:</td>
+						<td><input type="text" id="nome" name="nome"
+							value="${user.nome}"></td>
+					</tr>
+
+					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar" /></td>
 					</tr>
@@ -53,7 +59,7 @@
 			<tr>
 				<th>Id</th>
 				<th>Login</th>
-				<th>Senha</th>
+				<th>Nome</th>
 				<th>Excluir</th>
 				<th>Editar</th>
 			</tr>
@@ -62,14 +68,14 @@
 					<td style="width: 150px"><c:out value="${user.id}" /></td>
 
 					<td style="width: 200px"><c:out value="${user.login}" /></td>
-					<td style="width: 150px"><c:out value="${user.senha}" /></td>
+					<td style="width: 150px"><c:out value="${user.nome}" /></td>
 
 					<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
 							src="resources/img/excluir.jpg" alt="excluir" title="excluir"
 							width="20px" height="20px" /></a></td>
 					<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
-							alt="editar" src="resources/img/editar.png" title="editar"
-							width="20px" height="20px" /></a></td>
+							src="resources/img/editar.png" title="editar" width="20px"
+							height="20px" /></a></td>
 				</tr>
 			</c:forEach>
 		</table>
