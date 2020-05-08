@@ -10,16 +10,18 @@
 
  ## Página de Login ##
 
- <img align="center" src="imagens/pagina-login.png" width="700">
+ <img align="center" src="imagens/pagina-login.png" width="900">
 
  Caso o usuário seja cadastrado no banco de dados, o navegador abrirá a página de boas vindas, nesta página foi inserido um link para redirecionar o usuário para a página de cadastro de usuários.
 
- <img align="center" src="imagens/pagina-entrada.png" width="400">
+
+## Página de Boas-Vindas ##
+ <img align="center" src="imagens/pagina-entrada.png" width="900">
 
  Após o usuário clicar no link da página de boas-vindas o usuário será redirecionado para a página de cadastro de novos usuários. Nesta página ele poderá inserir novos usuários no banco de dados. Logo abaixo do formulário de cadastro foi inserido uma tabela que mostrará todos os usuários cadastrados no banco de dados contendo botões para excluir e deletar os usuários cadastrados.
 
 ## Página de Cadastro de Usuários ##
- <img align="center" src="imagens/pagina-cadastroUsuario.png" width="700">
+ <img align="center" src="imagens/pagina-cadastroUsuario.png" width="900">
 
 
 
