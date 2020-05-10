@@ -24,7 +24,7 @@
 							value="${produto.id}" class="field-long"></td>
 					</tr>
 					<tr>
-						<td>Nome:</td>
+						<td>Nome do Produto:</td>
 						<td><input type="text" id="nome" name="nome"
 							value="${produto.nome}"></td>
 					</tr>
@@ -53,7 +53,7 @@
 			<caption>Produtos cadastrados</caption>
 			<tr>
 				<th>Id</th>
-				<th>Nome</th>
+				<th>Nome do Produto</th>
 				<th>Quantidade</th>
 				<th>Valor R$</th>
 				<th>Delete</th>

@@ -76,12 +76,7 @@ public class ServletsProduto extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String quantidade = request.getParameter("quantidade");
 			String valor = request.getParameter("valor");
-
-			Produto produto = new Produto();
-			produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
-			produto.setNome(nome);
-			produto.setQuantidade(Double.parseDouble(quantidade));
-			produto.setValor(Double.parseDouble(valor));
+			
 			try {
 
 				String msg = null;
@@ -96,11 +91,21 @@ public class ServletsProduto extends HttpServlet {
 
 				}
 
+			Produto produto = new Produto();
+			produto.setNome(nome);
+			produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
+		
+			if (valor != null && !quantidade.isEmpty()) {
+				produto.setQuantidade(Double.parseDouble(quantidade));
+			}
+		
+			if (valor != null && valor.isEmpty()) {
+				produto.setValor(Double.parseDouble(valor));
+			}
+
 				if (msg != null) {
 					request.setAttribute("msg", msg);
-				}
-
-				if (id == null || id.isEmpty() && daoProduto.validarNome(nome)
+				} else if (id == null || id.isEmpty() && daoProduto.validarNome(nome)
 						&& podeInserir) {
 
 					daoProduto.salvar(produto);
