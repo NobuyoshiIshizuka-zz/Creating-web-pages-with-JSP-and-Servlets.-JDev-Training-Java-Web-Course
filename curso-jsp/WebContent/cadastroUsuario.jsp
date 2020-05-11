@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>
+<a href="acessoliberado.jsp">Inicio </a>
+<a href="index.jsp"> Sair</a>
 	<center>
 		<h1>Cadastro de usuário</h1>
 	<h3 style="color: orange;">${msg}</h3>
