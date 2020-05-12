@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro de Produto</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
+            
 </head>
 <body>
 <a href="acessoliberado.jsp">Inicio </a>
