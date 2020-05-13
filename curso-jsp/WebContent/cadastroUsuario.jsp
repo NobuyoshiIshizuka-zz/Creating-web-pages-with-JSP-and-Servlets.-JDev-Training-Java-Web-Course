@@ -32,53 +32,46 @@
 						<td>Código:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id"
 							value="${user.id}" class="field-long"></td>
+
+						<td>Cep:</td>
+						<td><input type="text" id="cep" name="cep"
+							onblur="consultaCep();" value="${user.cep}"></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
 						<td><input type="text" id="login" name="login"
 							value="${user.login}"></td>
+
+						<td>Rua:</td>
+						<td><input type="text" id="rua" name="rua" ${user.rua}></td>
 					</tr>
 
 					<tr>
 						<td>Senha:</td>
 						<td><input type="password" id="senha" name="senha"
 							value="${user.senha}"></td>
+
+						<td>Bairro:</td>
+						<td><input type="text" id="bairro" name="bairro"
+							${user.bairro}></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
 							value="${user.nome}"></td>
+
+						<td>Cidade:</td>
+						<td><input type="text" id="cidade" name="cidade"
+							${user.cidade}></td>
 					</tr>
 					<tr>
 						<td>Fone:</td>
 						<td><input type="text" id="fone" name="fone"
 							value="${user.fone}"></td>
-					</tr>
 
-					<tr>
-						<td>Cep:</td>
-						<td><input type="text" id="cep" name="cep"
-							onblur="consultaCep();" value="${user.cep}"></td>
-					</tr>
-					<tr>
-					<tr>
-						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" ${user.rua}></td>
-					</tr>
-
-					<tr>
-						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro" ${user.bairro}></td>
-					</tr>
-
-					<tr>
-						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade" ${user.cidade}></td>
-					</tr>
-
-					<tr>
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado" ${user.estado}></td>
+						<td><input type="text" id="estado" name="estado"
+							${user.estado}></td>
 					</tr>
 
 					<tr>
@@ -157,7 +150,7 @@
 
 		function consultaCep() {
 			var cep = $("#cep").val();
-		
+
 			//Consulta o webservice viacep.com.br/
 			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
 					function(dados) {

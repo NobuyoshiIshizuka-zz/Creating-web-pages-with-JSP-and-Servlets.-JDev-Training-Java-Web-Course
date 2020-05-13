@@ -151,8 +151,8 @@ public class DaoUsuario {
 	
 	public void atualizar(BeanCursoJsp usuario) {
 		try {
-			String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ?  where id = "
-					+ usuario.getId();
+			String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ?, cep = ?, rua = ?, bairro = ?,"
+					+ "cidade = ?, estado = ?, ibge = ?  where id = "  + usuario.getId();
 
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(sql);
