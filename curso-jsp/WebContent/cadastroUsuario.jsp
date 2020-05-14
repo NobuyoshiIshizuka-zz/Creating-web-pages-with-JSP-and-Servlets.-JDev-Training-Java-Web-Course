@@ -29,7 +29,7 @@
 			<li>
 				<table>
 					<tr>
-						<td>Código:</td>
+						<td>ID:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id"
 							value="${user.id}" class="field-long"></td>
 
@@ -65,7 +65,7 @@
 							${user.cidade}></td>
 					</tr>
 					<tr>
-						<td>Fone:</td>
+						<td>Telefone:</td>
 						<td><input type="text" id="fone" name="fone"
 							value="${user.fone}"></td>
 
@@ -119,7 +119,7 @@
 					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
 							alt="Editar" title="Editar" src="resources/img/editar.png"
 							width="20px" height="20px"></a></td>
-					<td><a href="salvarTelefones?user=${user.id}"><img
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img
 							alt="Telefones" title="Telefones" src="resources/img/icone-phone.png"
 							width="20px" height="20px"></a></td>
 

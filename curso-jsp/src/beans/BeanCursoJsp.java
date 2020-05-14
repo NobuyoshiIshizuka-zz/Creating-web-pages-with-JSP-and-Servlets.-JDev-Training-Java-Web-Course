@@ -76,7 +76,7 @@ public class BeanCursoJsp {
 	public void setFone(String fone) {
 		this.fone = fone;
 	}
-
+	
 	public String getFone() {
 		return fone;
 	}
