@@ -101,6 +101,7 @@
 				<th>Fone</th>
 				<th>Delete</th>
 				<th>Editar</th>
+				<th>Telefones</th>
 
 			</tr>
 			<c:forEach items="${usuarios}" var="user">
@@ -118,6 +119,10 @@
 					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
 							alt="Editar" title="Editar" src="resources/img/editar.png"
 							width="20px" height="20px"></a></td>
+					<td><a href="salvarTelefones?user=${user.id}"><img
+							alt="Telefones" title="Telefones" src="resources/img/icone-phone.png"
+							width="20px" height="20px"></a></td>
+
 				</tr>
 			</c:forEach>
 		</table>
