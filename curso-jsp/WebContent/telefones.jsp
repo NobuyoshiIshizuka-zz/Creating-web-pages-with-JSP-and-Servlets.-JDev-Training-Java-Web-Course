@@ -29,7 +29,7 @@
 					</tr>
 					<tr>
 						<td>Número:</td>
-						<td><input type="text" id="numero" name="numero" value="" /></td>
+						<td><input type="text" id="numero" name="numero" value="" placeholder="Informe o N° do telefone: "/></td>
 						<td>
 							<select id="tipo" name="tipo">
 								<option>Celular</option>

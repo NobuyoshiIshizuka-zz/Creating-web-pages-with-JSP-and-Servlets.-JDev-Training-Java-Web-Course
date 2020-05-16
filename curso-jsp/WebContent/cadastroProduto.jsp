@@ -17,7 +17,7 @@
 	<h3 style="color: orange;">${msg}</h3>
 	</center>
 	
-	<form action="salvarProduto" method="post" id="formProduto" onsubmit="return validarCampos() ? true : false">
+	<form action="salvarProduto" method="post" id="formProduto" onsubmit="return validarCampos() ? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -29,18 +29,18 @@
 					<tr>
 						<td>Nome do Produto:</td>
 						<td><input type="text" id="nome" name="nome"
-							value="${produto.nome}"></td>
+							value="${produto.nome}" placeholder ="Informe o Nome do Produto:"></td>
 					</tr>
 
 					<tr>
 						<td>Quantidade:</td>
 						<td><input type="text" id="quantidade" name="quantidade"
-							value="${produto.quantidade}"></td>
+							value="${produto.quantidade}" placeholder ="Informe a Quantidade:"></td>
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
 						<td><input type="text" id="valor" name="valor"
-							value="${produto.valor}"></td>
+							value="${produto.valor}" placeholder ="Informe o Valor em R$:"></td>
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"> <input type="submit"  value="Cancelar" onclick="document.getElementById('formProduto').action = 'salvarProduto?acao=reset'"></td>

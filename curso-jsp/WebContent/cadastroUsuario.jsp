@@ -16,6 +16,8 @@
 
 </head>
 <body>
+	<!-- Tela de manipulação de tabela usuario no Banco de Dados. -->
+	
 	<a href="acessoliberado.jsp">Inicio </a>
 	<a href="index.jsp"> Sair</a>
 	<center>
@@ -24,50 +26,51 @@
 	</center>
 
 	<form action="salvarUsuario" method="post" id="formUser"
-		onsubmit="return validarCampos() ? true : false;">
+		onsubmit="return validarCampos()? true : false;" enctype="multipart/form-data" >
 		<ul class="form-style-1">
 			<li>
 				<table>
 					<tr>
 						<td>ID:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id"
-							value="${user.id}" class="field-long"></td>
+							value="${user.id}" class="field-long" /></td>
 
 						<td>Cep:</td>
 						<td><input type="text" id="cep" name="cep"
-							onblur="consultaCep();" value="${user.cep}"></td>
+							onblur="consultaCep();" value="${user.cep}"
+							placeholder="Dígite o seu CEP:" /></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
 						<td><input type="text" id="login" name="login"
-							value="${user.login}"></td>
+							value="${user.login}" placeholder="Cadastre o seu Login:"></td>
 
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" ${user.rua}></td>
+						<td><input type="text" id="rua" name="rua" ${user.rua} /></td>
 					</tr>
 
 					<tr>
 						<td>Senha:</td>
 						<td><input type="password" id="senha" name="senha"
-							value="${user.senha}"></td>
+							value="${user.senha}" placeholder="Cadastre a sua Senha:"></td>
 
 						<td>Bairro:</td>
 						<td><input type="text" id="bairro" name="bairro"
-							${user.bairro}></td>
+							${user.bairro} /></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
-							value="${user.nome}"></td>
+							value="${user.nome}" placeholder="Informe o seu nome:"></td>
 
 						<td>Cidade:</td>
 						<td><input type="text" id="cidade" name="cidade"
-							${user.cidade}></td>
+							${user.cidade} /></td>
 					</tr>
 					<tr>
 						<td>Telefone:</td>
 						<td><input type="text" id="fone" name="fone"
-							value="${user.fone}"></td>
+							value="${user.fone}" placeholder="Cadastrar Telefone"></td>
 
 						<td>Estado:</td>
 						<td><input type="text" id="estado" name="estado"
@@ -76,13 +79,25 @@
 
 					<tr>
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge" ${user.ibge}></td>
+						<td><input type="text" id="ibge" name="ibge" ${user.ibge}
+							placeholder="Digite o IBGE:"></td>
+					</tr>
+
+					<tr>
+						<td>
+							Foto:
+						</td>
+						
+						<td>
+							<input type="file" name="foto" value="Foto"/>
+						</td>
 					</tr>
 
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"> <input
-							type="submit" value="Cancelar"
+						<td>
+						<input type="submit" value="Salvar"/>
+						<input type="submit" value="Cancelar"
 							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 					</tr>
 				</table>
@@ -96,11 +111,10 @@
 			<caption>Usuários cadastrados</caption>
 			<tr>
 				<th>Id</th>
-				<th>Login</th>
+				<th>Foto</th>
 				<th>Nome</th>
-				<th>Fone</th>
-				<th>Delete</th>
-				<th>Editar</th>
+				<th>Excluir</th>
+				<th>Atualizar</th>
 				<th>Telefones</th>
 
 			</tr>
@@ -108,20 +122,14 @@
 				<tr>
 					<td style="width: 150px"><c:out value="${user.id}">
 						</c:out></td>
-					<td style="width: 150px"><c:out value="${user.login}">
-						</c:out></td>
+					<td><a href="salvarUsuario?acao=dowload&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px" /></a></td>
 					<td><c:out value="${user.nome}"></c:out></td>
-					<td style="width: 150px"><c:out value="${user.fone}"></c:out></td>
-
-					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
-							src="resources/img/excluir.png" alt="excluir" title="Excluir"
+					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/excluir.png" alt="excluir" title="Excluir"
 							width="20px" height="20px"> </a></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
-							alt="Editar" title="Editar" src="resources/img/editar.png"
+					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img alt="Editar" title="Editar" src="resources/img/editar.png"
 							width="20px" height="20px"></a></td>
-					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img
-							alt="Telefones" title="Telefones" src="resources/img/icone-phone.png"
-							width="20px" height="20px"></a></td>
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones"
+							src="resources/img/icone-phone.png" width="20px" height="20px"></a></td>
 
 				</tr>
 			</c:forEach>
