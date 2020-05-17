@@ -1,5 +1,7 @@
 package beans;
 
+
+
 /*
  * Classe BeanCursoJsp
  * Classe Que Provê o Modelo de Objeto
@@ -18,15 +20,34 @@ public class BeanCursoJsp {
 	private String estado;
 	private String ibge;
 	private String fotoBase64;
+	private String curriculoBase64;
 	private String contentType;
-	
+	private String contentTypeCurriculo;
 	private String tempFotoUser;
+	
+	
 	
 	public String getTempFotoUser() {
 		
 		tempFotoUser= "data:" + contentType + ";base64," + fotoBase64;
 		
 		return tempFotoUser;
+	}
+	
+	public void setContentTypeCurriculo(String contentTypeCurriculo) {
+		this.contentTypeCurriculo = contentTypeCurriculo;
+	}
+	
+	public void setCurriculoBase64(String curriculoBase64) {
+		this.curriculoBase64 = curriculoBase64;
+	}
+	
+	public String getCurriculoBase64() {
+		return curriculoBase64;
+	}
+	
+	public String getContentTypeCurriculo() {
+		return contentTypeCurriculo;
 	}
 	
 	
@@ -74,13 +95,19 @@ public class BeanCursoJsp {
 		this.nome = nome;
 	}
 	
+	
+	public void setTempFotoUser(String tempFotoUser) {
+		this.tempFotoUser = tempFotoUser;
+	}
+
 	public String getFone() {
 		return fone;
 	}
+
 	public void setFone(String fone) {
 		this.fone = fone;
 	}
-	
+
 	public String getCep() {
 		return cep;
 	}

@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.buf.UDecoder;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import beans.BeanCursoJsp;
@@ -63,14 +67,25 @@ public class Usuario extends HttpServlet {
 				} else if (acao.equalsIgnoreCase("download")){
 					BeanCursoJsp usuario = daoUsuario.consultar(user);
 					if (usuario != null){
-						response.setHeader("Content-Disposition", "attachment;filename=arquivo."
-					   + usuario.getContentType().split("\\/")[1]);
+						String contentType = "";
+						byte[] fileBytes = null; 
 						
-						/*Converte a base64 da imagem do banco para byte[]*/
-						byte[] imageFotoBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+						String tipo = request.getParameter("tipo");
+						
+						if (tipo.equalsIgnoreCase("imagem")){
+							contentType = usuario.getContentType();
+							fileBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+						}else if (tipo.equalsIgnoreCase("curriculo")){
+							contentType = usuario.getContentTypeCurriculo();
+							fileBytes = new Base64().decodeBase64(usuario.getCurriculoBase64());
+						}
+						
+						response.setHeader("Content-Disposition", "attachment;filename=arquivo."
+					   + contentType.split("\\/")[1]);
+						
 						
 						/*Coloca os bytes em um objeto de entrada para processar*/
-						InputStream is = new ByteArrayInputStream(imageFotoBytes);
+						InputStream is = new ByteArrayInputStream(fileBytes);
 						
 						/*inicio da resposta para o navegador*/
 						int read= 0;
@@ -141,11 +156,24 @@ public class Usuario extends HttpServlet {
 
 						Part imagemFoto = request.getPart("foto");
 						
-						String fotoBase64 = new Base64()
-						.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
+						if (imagemFoto != null) {
 						
-						usuario.setFotoBase64(fotoBase64);
-						usuario.setContentType(imagemFoto.getContentType());
+							String fotoBase64 = new Base64()
+							.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
+							
+							usuario.setFotoBase64(fotoBase64);
+							usuario.setContentType(imagemFoto.getContentType());
+						}
+						
+						/*Processa pdf*/
+						Part curriculoPdf = request.getPart("curriculo");
+						if (curriculoPdf != null){
+							String curriculoBase64 = new Base64()
+							.encodeBase64String(converteStremParabyte(curriculoPdf.getInputStream()));
+							
+							usuario.setCurriculoBase64(curriculoBase64);
+							usuario.setContentTypeCurriculo(curriculoPdf.getContentType());
+						}
 					}
 					
 					/*FIM File upload de imagems e pdf*/
@@ -180,7 +208,11 @@ public class Usuario extends HttpServlet {
 						}
 						
 						if(id != null && !id.isEmpty() && podeInserir) {
-							daoUsuario.atualizar(usuario);
+							if (!daoUsuario.validarLoginUpdate(login, id)){
+								request.setAttribute("msg", "Login já existe para outro usuário");
+							}else {
+							 daoUsuario.atualizar(usuario);
+							}
 						}
 						
 						if(!podeInserir) {
@@ -189,7 +221,7 @@ public class Usuario extends HttpServlet {
 						
 						RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 						request.setAttribute("usuarios", daoUsuario.listar());
-						request.setAttribute("msg", "Salvo Com Sucesso!");
+						//request.setAttribute("msg", "Salvo Com Sucesso!");
 						view.forward(request, response);
 					} catch(Exception e) {
 						e.printStackTrace();
@@ -210,4 +242,5 @@ public class Usuario extends HttpServlet {
 	 return baos.toByteArray();
 	
 	}
+
 }
