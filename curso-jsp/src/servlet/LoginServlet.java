@@ -31,11 +31,10 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-
-			BeanCursoJsp beanCursoJsp = new BeanCursoJsp();
-
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
+			
+			if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 
 			if (daoLogin.validarLogin(login, senha)) {// acesso ok
 				RequestDispatcher dispatcher = request
@@ -46,9 +45,16 @@ public class LoginServlet extends HttpServlet {
 						.getRequestDispatcher("acessonegado.jsp");
 				dispatcher.forward(request, response);
 			}
+			
+			} else {
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("acessonegado.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }
