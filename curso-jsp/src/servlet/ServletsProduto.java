@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Produto;
+import beans.BeanProduto;
 import dao.DaoProduto;
 
 @WebServlet("/salvarProduto")
@@ -36,7 +36,7 @@ public class ServletsProduto extends HttpServlet {
 				view.forward(request, response);
 			} else if (acao.equalsIgnoreCase("editar")) {
 
-				Produto beanCursoJsp = daoProduto.consultar(produto);
+				BeanProduto beanCursoJsp = daoProduto.consultar(produto);
 
 				RequestDispatcher view = request
 						.getRequestDispatcher("/cadastroProduto.jsp");
@@ -76,37 +76,52 @@ public class ServletsProduto extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String quantidade = request.getParameter("quantidade");
 			String valor = request.getParameter("valor");
-			
+
 			try {
 
 				String msg = null;
 				boolean podeInserir = true;
 
-				if (id == null || id.isEmpty() && !daoProduto.validarNome(nome)) {// QUANDO
-																					// FDOR
-																					// PRODUTO
-																					// NOVO
+				if (valor == null || valor.isEmpty()) {
+					msg = "Valor R$ deve ser informado";
+					podeInserir = false;
+
+				} else if (quantidade == null || quantidade.isEmpty()) {
+					msg = "Quantidade deve ser informado";
+					podeInserir = false;
+
+				} else if (nome == null || nome.isEmpty()) {
+					msg = "Nome deve ser informado";
+					podeInserir = false;
+
+				} else if (id == null || id.isEmpty()
+						&& !daoProduto.validarNome(nome)) {// QUANDO
+															// FDOR
+															// PRODUTO
+															// NOVO
 					msg = "Produto já existe com o mesmo nome!";
 					podeInserir = false;
 
 				}
 
-			Produto produto = new Produto();
-			produto.setNome(nome);
-			produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
-		
-			if (valor != null && !quantidade.isEmpty()) {
-				produto.setQuantidade(Double.parseDouble(quantidade));
-			}
-		
-			if (valor != null && valor.isEmpty()) {
-				produto.setValor(Double.parseDouble(valor));
-			}
+				BeanProduto produto = new BeanProduto();
+				produto.setNome(nome);
+				produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 
+				if (quantidade != null && !quantidade.isEmpty()) {
+					produto.setQuantidade(Double.parseDouble(quantidade));
+				}
+
+				if (valor != null && !valor.isEmpty()){
+					String valorParse = valor.replaceAll("\\.", "");// 10500,20
+					valorParse = valorParse.replaceAll("\\,", ".");//10500.20
+					produto.setValor(Double.parseDouble(valorParse)); 
+				}
+				
 				if (msg != null) {
 					request.setAttribute("msg", msg);
-				} else if (id == null || id.isEmpty() && daoProduto.validarNome(nome)
-						&& podeInserir) {
+				} else if (id == null || id.isEmpty()
+						&& daoProduto.validarNome(nome) && podeInserir) {
 
 					daoProduto.salvar(produto);
 

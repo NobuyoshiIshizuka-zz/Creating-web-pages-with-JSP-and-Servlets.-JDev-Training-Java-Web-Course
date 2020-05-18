@@ -1,7 +1,5 @@
 package beans;
 
-
-
 /*
  * Classe BeanCursoJsp
  * Classe Que Provê o Modelo de Objeto
@@ -12,7 +10,7 @@ public class BeanCursoJsp {
 	private String login;
 	private String senha;
 	private String nome;
-	private String fone;
+	private String telefone;
 	private String cep;
 	private String rua;
 	private String bairro;
@@ -95,19 +93,13 @@ public class BeanCursoJsp {
 		this.nome = nome;
 	}
 	
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 	
-	public void setTempFotoUser(String tempFotoUser) {
-		this.tempFotoUser = tempFotoUser;
-	}
-
-	public String getFone() {
-		return fone;
-	}
-
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-
 	public String getCep() {
 		return cep;
 	}

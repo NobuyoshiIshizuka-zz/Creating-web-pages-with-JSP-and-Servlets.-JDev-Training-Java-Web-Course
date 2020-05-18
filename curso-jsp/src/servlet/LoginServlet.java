@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoLogin;
-import beans.BeanCursoJsp;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {

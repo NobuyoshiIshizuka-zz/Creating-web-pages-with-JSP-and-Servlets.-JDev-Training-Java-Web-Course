@@ -21,7 +21,7 @@
 	<a href="acessoliberado.jsp">Inicio </a>
 	<a href="index.jsp"> Sair</a>
 	<center>
-		<h1>Cadastro de usuário</h1>
+		<h1>Cadastro de Usuário</h1>
 		<h3 style="color: orange;">${msg}</h3>
 	</center>
 
@@ -36,50 +36,30 @@
 							value="${user.id}" class="field-long" /></td>
 
 						<td>Cep:</td>
-						<td><input type="text" id="cep" name="cep"
+						<td><input type="text" id="cep" name="cep" value=""
 							onblur="consultaCep();" value="${user.cep}"
-							placeholder="Dígite o seu CEP:" /></td>
+							placeholder="Dígite o seu CEP:" maxlength="9" /></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
 						<td><input type="text" id="login" name="login"
-							value="${user.login}" placeholder="Cadastre o seu Login:"></td>
-
-						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua" ${user.rua} /></td>
+							value="${user.login}" maxlength="10" placeholder="Cadastre o seu Login:"></td>
 					</tr>
 
 					<tr>
 						<td>Senha:</td>
 						<td><input type="password" id="senha" name="senha"
-							value="${user.senha}" placeholder="Cadastre a sua Senha:"></td>
-
-						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro"
-							${user.bairro} /></td>
+							value="${user.senha}" maxlength="50" placeholder="Cadastre a sua Senha:"></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
-							value="${user.nome}" placeholder="Informe o seu nome:"></td>
-
-						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade"
-							${user.cidade} /></td>
+							value="${user.nome}" maxlength="50" placeholder="Informe o seu nome:"></td>
 					</tr>
-					<tr>
-						<td>Telefone:</td>
-						<td><input type="text" id="fone" name="fone"
-							value="${user.fone}" placeholder="Cadastrar Telefone"></td>
-
-						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado"
-							${user.estado}></td>
-					</tr>
-
+					
 					<tr>
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge" ${user.ibge}
+						<td><input type="text" id="ibge" name="ibge" maxlength="20" ${user.ibge}
 							placeholder="Digite o IBGE:"></td>
 					</tr>
 
@@ -89,7 +69,8 @@
 						</td>
 						
 						<td>
-							<input type="file" name="foto"><input type="text" style="display: none;" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}"/>
+							<input type="file" name="foto">
+							<input type="text" style="display: none;" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}"/>
 							<input type="text" style="display: none;" name="contentTypeTemp" readonly="readonly" value="${user.contentType}"/>
 						</td>
 					</tr>
@@ -108,10 +89,15 @@
 
 					<tr>
 						<td></td>
+						
 						<td>
-						<input type="submit" value="Salvar"/>
-						<input type="submit" value="Cancelar"
-							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
+						<input type="submit" value="Salvar" style="width: 173px;"/> 
+						</td>
+						<td></td>
+						<td>
+						<input type="submit" value="Cancelar" style="width: 173px;"
+							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'">
+						</td>
 					</tr>
 				</table>
 
@@ -127,9 +113,10 @@
 				<th>Foto</th>
 				<th>Curricullo</th>
 				<th>Nome</th>
+				<th>Telefones</th>
 				<th>Excluir</th>
 				<th>Atualizar</th>
-				<th>Telefones</th>
+				
 
 			</tr>
 			<c:forEach items="${usuarios}" var="user">
@@ -151,12 +138,13 @@
 					</c:if>
 					
 					<td><c:out value="${user.nome}"></c:out></td>
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones"
+							src="resources/img/icone-phone.png" width="20px" height="20px"></a></td>
 					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/excluir.png" alt="excluir" title="Excluir"
 							width="20px" height="20px"> </a></td>
 					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img alt="Editar" title="Editar" src="resources/img/editar.png"
 							width="20px" height="20px"></a></td>
-					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones"
-							src="resources/img/icone-phone.png" width="20px" height="20px"></a></td>
+					
 
 				</tr>
 			</c:forEach>
